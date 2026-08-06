@@ -7,6 +7,7 @@ namespace TP05.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    builder.Services.AddSessions();
 
     public HomeController(ILogger<HomeController> logger)
     {
