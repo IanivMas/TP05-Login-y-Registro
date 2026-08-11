@@ -1,15 +1,24 @@
 namespace TP05.Models;
 using Microsoft.Data.SqlClient;
 using Dapper;
-public class BD 
+public class BD
 {
     private string conexion = @"Server=localhost;DataBase=TP05; Integrated Security=True; TrustServerCertificate=True;";
-    public void agregarUsuarios (Usuario u)
+    public void agregarUsuario (Usuario u)
     {
-       string query = "INSERT INTO Usuario (id,nombre,apellido,usuario,clave,tipo) VALUES (@nombre,@apellido,@usuario,@clave,@tipo,@id)";
-       using(SqlConnection connection = new SqlConnection(_connectionString) )
-       {
-        connection.Execute(query,new{nombre = u.nombre, apellido = u.apellido, usuario = u.usuario, clave = u.clave, tipo = u.tipo, id = u.id});  
-       }
+        string query = "INSERT INTO Usuario (id,nombre,apellido,usuario,clave,tipo) VALUES (@id,@nombre,@apellido,@usuario,@clave,@tipo)";
+        using (SqlConnection connection = new SqlConnection(conexion))
+        {
+            connection.Execute(query, new { id = u.id, nombre = u.nombre, apellido = u.apellido, usuario = u.usuario, clave = u.clave, tipo = u.tipo });
+        }
+    }
+
+    public Usuario encontrarUsuario(string usuario, string clave)
+    {
+        string query = "SELECT id, nombre, apellido, usuario, clave, tipo FROM Usuario WHERE usuario = @usuario AND clave = @clave";
+        using (SqlConnection connection = new SqlConnection(conexion))
+        {
+            return connection.QueryFirstOrDefault<Usuario>(query, new { usuario, clave });
+        }
     }
 }

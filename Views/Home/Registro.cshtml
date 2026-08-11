@@ -1,8 +1,52 @@
+@model TP05.Models.Usuario
+
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Registro";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <h2>Registro de usuario</h2>
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+    {
+        <div class="alert alert-success">@ViewBag.Message</div>
+    }
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Error))
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form asp-action="Registro" method="post">
+        <div class="mb-3">
+            <label asp-for="nombre" class="form-label">Nombre</label>
+            <input asp-for="nombre" class="form-control" />
+            <span asp-validation-for="nombre" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="apellido" class="form-label">Apellido</label>
+            <input asp-for="apellido" class="form-control" />
+            <span asp-validation-for="apellido" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="usuario" class="form-label">Usuario</label>
+            <input asp-for="usuario" class="form-control" />
+            <span asp-validation-for="usuario" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="clave" class="form-label">Clave</label>
+            <input asp-for="clave" type="password" class="form-control" />
+            <span asp-validation-for="clave" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="tipo" class="form-label">Tipo</label>
+            <input asp-for="tipo" class="form-control" placeholder="estudiante" />
+            <span asp-validation-for="tipo" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
 </div>

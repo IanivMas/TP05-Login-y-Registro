@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Inicio de Sesión";
+}
+
+<div class="container mt-4" style="max-width: 500px;">
+    <h2>Iniciar sesión</h2>
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Error))
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form asp-action="InicioSesion" method="post">
+        <div class="mb-3">
+            <label for="usuario" class="form-label">Usuario</label>
+            <input id="usuario" name="usuario" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label for="clave" class="form-label">Clave</label>
+            <input id="clave" name="clave" type="password" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+    </form>
+</div>

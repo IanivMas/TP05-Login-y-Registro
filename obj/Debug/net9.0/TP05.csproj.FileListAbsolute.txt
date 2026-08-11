@@ -1,0 +1,10 @@
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.csproj.AssemblyReference.cache
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.AssemblyInfoInputs.cache
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.AssemblyInfo.cs
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.csproj.CoreCompileInputs.cache
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.RazorAssemblyInfo.cache
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.RazorAssemblyInfo.cs
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.sourcelink.json

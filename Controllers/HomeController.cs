@@ -7,7 +7,7 @@ namespace TP05.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    builder.Services.AddSessions();
+    BD bd = new BD();
 
     public HomeController(ILogger<HomeController> logger)
     {
@@ -16,6 +16,18 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        return View();
+    }
+
+    public IActionResult Registro()
+    {
+        
+        return View();
+    }
+
+    public IActionResult InicioSesion()
+    {
+       
         return View();
     }
 
