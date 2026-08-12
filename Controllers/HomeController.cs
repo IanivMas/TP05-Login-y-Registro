@@ -19,16 +19,47 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Registro()
+    public IActionResult Registro(Usuario usuario)
     {
-        
-        return View();
-    }
+        if (bd.buscarPorNombreUsuario(usuario.usuario) == null)
+        {
+            ViewBag.agregar = bd.agregarUsuario(usuario);
+            HttpClient.Context.Session.SetString("usuario", usuario.usuario);
+            HttpClient.Context.Session.SetString("clave", usuario.clave);
+            HttpClient.Context.Session.SetString("tipo", usuario.tipo);
+            HttpClient.Context.Session.SetString("nombre", usuario.nombre);
+            HttpClient.Context.Session.SetString("apellido", usuario.apellido);
+            HttpClient.Context.Session.SetString("id", usuario.id.ToString());
+            
+            return RedirectToAction("InicioSesion", "Home");
+        }
+        else
+        {
+            ViewBag.error = "El nombre de usuario ya existe.";
 
-    public IActionResult InicioSesion()
+            return View();
+        }
+    }
+    [HttpPost]
+    public IActionResult InicioSesion(string usuario, string clave)
     {
-       
-        return View();
+
+        Usuario UsuarioEncontrado = bd.encontrarUsuario(usuario, clave);
+        if (UsuarioEncontrado == null)
+        {
+            ViewBag.Error = "Usuario o contraseña incorrectos.";
+            return RedirectToAction("InicioSesion", "Home");
+        }
+        else
+        {
+            return RedirectToAction("PaginaPrincipal", "Home");
+
+        }
+
+    }
+    public IActionResult PaginaPrincipal()
+    {
+
     }
 
     public IActionResult Privacy()

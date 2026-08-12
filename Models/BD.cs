@@ -21,4 +21,14 @@ public class BD
             return connection.QueryFirstOrDefault<Usuario>(query, new { usuario, clave });
         }
     }
+
+    public Usuario buscarPorNombreUsuario(string usuario)
+    {
+        string query = "SELECT id, nombre, apellido, usuario, clave, tipo FROM Usuario WHERE usuario = @usuario";
+        using (SqlConnection connection = new SqlConnection(conexion))
+        {
+            return connection.QueryFirstOrDefault<Usuario>(query, new { usuario });
+        }
+    }
+
 }

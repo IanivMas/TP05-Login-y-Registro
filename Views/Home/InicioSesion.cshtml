@@ -10,7 +10,7 @@
         <div class="alert alert-danger">@ViewBag.Error</div>
     }
 
-    <form asp-action="InicioSesion" method="post">
+    <form action="@Url.Action("InicioSesion", "Home")" method="post">
         <div class="mb-3">
             <label for="usuario" class="form-label">Usuario</label>
             <input id="usuario" name="usuario" class="form-control" />

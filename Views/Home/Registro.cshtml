@@ -16,7 +16,7 @@
         <div class="alert alert-danger">@ViewBag.Error</div>
     }
 
-    <form asp-action="Registro" method="post">
+    <form action="@Url.Action("Registro", "Home")" method="post">
         <div class="mb-3">
             <label asp-for="nombre" class="form-label">Nombre</label>
             <input asp-for="nombre" class="form-control" />
