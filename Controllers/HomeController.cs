@@ -20,47 +20,45 @@ public class HomeController : Controller
     }
 
     public IActionResult Registro(Usuario usuario)
+{
+    if (bd.buscarPorNombreUsuario(usuario.usuario) == null)
     {
-        if (bd.buscarPorNombreUsuario(usuario.usuario) == null)
-        {
-            ViewBag.agregar = bd.agregarUsuario(usuario);
-            HttpClient.Context.Session.SetString("usuario", usuario.usuario);
-            HttpClient.Context.Session.SetString("clave", usuario.clave);
-            HttpClient.Context.Session.SetString("tipo", usuario.tipo);
-            HttpClient.Context.Session.SetString("nombre", usuario.nombre);
-            HttpClient.Context.Session.SetString("apellido", usuario.apellido);
-            HttpClient.Context.Session.SetString("id", usuario.id.ToString());
-            
-            return RedirectToAction("InicioSesion", "Home");
-        }
-        else
-        {
-            ViewBag.error = "El nombre de usuario ya existe.";
+        HttpContext.Session.SetString("usuario", usuario.usuario);
+        HttpContext.Session.SetString("clave", usuario.clave);
+        HttpContext.Session.SetString("tipo", usuario.tipo);
+        HttpContext.Session.SetString("nombre", usuario.nombre);
+        HttpContext.Session.SetString("apellido", usuario.apellido);
 
-            return View();
-        }
+        bd.agregarUsuario(usuario);
+
+        return RedirectToAction("InicioSesion", "Home");
     }
+    else
+    {
+        ViewBag.error = "El nombre de usuario ya existe.";
+        return View(usuario);
+    }
+}
     [HttpPost]
-    public IActionResult InicioSesion(string usuario, string clave)
+public IActionResult InicioSesion(Usuario usuario)
+{
+    Usuario usuarioEncontrado = bd.encontrarUsuario(usuario.usuario, usuario.clave);
+
+    if (usuarioEncontrado == null)
     {
-
-        Usuario UsuarioEncontrado = bd.encontrarUsuario(usuario, clave);
-        if (UsuarioEncontrado == null)
-        {
-            ViewBag.Error = "Usuario o contraseña incorrectos.";
-            return RedirectToAction("InicioSesion", "Home");
-        }
-        else
-        {
-            return RedirectToAction("PaginaPrincipal", "Home");
-
-        }
-
+        ViewBag.Error = "Usuario o contraseña incorrectos.";
+        return View(usuario);
     }
-    public IActionResult PaginaPrincipal()
-    {
 
-    }
+    HttpContext.Session.SetString("usuario", usuarioEncontrado.usuario);
+    HttpContext.Session.SetString("tipo", usuarioEncontrado.tipo);
+    HttpContext.Session.SetString("nombre", usuarioEncontrado.nombre);
+    HttpContext.Session.SetString("apellido", usuarioEncontrado.apellido);
+
+    return RedirectToAction("PaginaPrincipal", "Home");
+}
+
+    
 
     public IActionResult Privacy()
     {

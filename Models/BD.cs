@@ -6,10 +6,10 @@ public class BD
     private string conexion = @"Server=localhost;DataBase=TP05; Integrated Security=True; TrustServerCertificate=True;";
     public void agregarUsuario (Usuario u)
     {
-        string query = "INSERT INTO Usuario (id,nombre,apellido,usuario,clave,tipo) VALUES (@id,@nombre,@apellido,@usuario,@clave,@tipo)";
+        string query = "INSERT INTO Usuario (nombre,apellido,usuario,clave,tipo) VALUES (@nombre,@apellido,@usuario,@clave,@tipo)";
         using (SqlConnection connection = new SqlConnection(conexion))
         {
-            connection.Execute(query, new { id = u.id, nombre = u.nombre, apellido = u.apellido, usuario = u.usuario, clave = u.clave, tipo = u.tipo });
+            connection.Execute(query, new {nombre = u.nombre, apellido = u.apellido, usuario = u.usuario, clave = u.clave, tipo = u.tipo });
         }
     }
 
@@ -24,7 +24,7 @@ public class BD
 
     public Usuario buscarPorNombreUsuario(string usuario)
     {
-        string query = "SELECT id, nombre, apellido, usuario, clave, tipo FROM Usuario WHERE usuario = @usuario";
+        string query = "SELECT nombre, apellido, usuario, clave, tipo FROM Usuario WHERE usuario = @usuario";
         using (SqlConnection connection = new SqlConnection(conexion))
         {
             return connection.QueryFirstOrDefault<Usuario>(query, new { usuario });
