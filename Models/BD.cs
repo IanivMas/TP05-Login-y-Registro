@@ -6,6 +6,7 @@ public class BD
     private string conexion = @"Server=localhost;DataBase=TP05; Integrated Security=True; TrustServerCertificate=True;";
     public void agregarUsuario (Usuario u)
     {
+        Console.WriteLine(u.usuario);
         string query = "INSERT INTO Usuario (nombre,apellido,usuario,clave,tipo) VALUES (@nombre,@apellido,@usuario,@clave,@tipo)";
         using (SqlConnection connection = new SqlConnection(conexion))
         {

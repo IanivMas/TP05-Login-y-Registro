@@ -18,51 +18,64 @@ public class HomeController : Controller
     {
         return View();
     }
-
-    public IActionResult Registro(Usuario usuario)
+    public IActionResult Registro()
 {
-    if (bd.buscarPorNombreUsuario(usuario.usuario) == null)
+    return View();
+}
+
+public IActionResult InicioSesion()
+{
+    return View();
+}
+
+    [HttpPost]
+    public IActionResult Registro(string nombre, string apellido, string usuario, string clave, string tipo, int id)
+{
+    Usuario u = new Usuario(nombre, apellido, usuario, clave, tipo, id);
+    if (bd.buscarPorNombreUsuario(u.usuario) == null)
     {
-        HttpContext.Session.SetString("usuario", usuario.usuario);
-        HttpContext.Session.SetString("clave", usuario.clave);
-        HttpContext.Session.SetString("tipo", usuario.tipo);
-        HttpContext.Session.SetString("nombre", usuario.nombre);
-        HttpContext.Session.SetString("apellido", usuario.apellido);
-
-        bd.agregarUsuario(usuario);
-
+       bd.agregarUsuario(u);
         return RedirectToAction("InicioSesion", "Home");
     }
     else
     {
         ViewBag.error = "El nombre de usuario ya existe.";
-        return View(usuario);
+         return RedirectToAction("Registro", "Home");
     }
+    
 }
     [HttpPost]
-public IActionResult InicioSesion(Usuario usuario)
+public IActionResult InicioSesion(string usuario, string clave)
 {
-    Usuario usuarioEncontrado = bd.encontrarUsuario(usuario.usuario, usuario.clave);
+    Usuario usuarioEncontrado = bd.encontrarUsuario(usuario, clave);
 
     if (usuarioEncontrado == null)
     {
         ViewBag.Error = "Usuario o contraseña incorrectos.";
-        return View(usuario);
+        return View();
     }
-
     HttpContext.Session.SetString("usuario", usuarioEncontrado.usuario);
-    HttpContext.Session.SetString("tipo", usuarioEncontrado.tipo);
-    HttpContext.Session.SetString("nombre", usuarioEncontrado.nombre);
-    HttpContext.Session.SetString("apellido", usuarioEncontrado.apellido);
-
+   
     return RedirectToAction("PaginaPrincipal", "Home");
 }
 
     
 
-    public IActionResult Privacy()
+    public IActionResult PaginaPrincipal()
     {
+        if (string.IsNullOrEmpty(HttpContext.Session.GetString("usuario")))
+        {
+            
+            return RedirectToAction("InicioSesion", "Home");
+        }
         return View();
+
+        
+    }
+    public IActionResult CerrarSesion()
+    {
+        HttpContext.Session.Clear();
+        return RedirectToAction("Index", "Home");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
