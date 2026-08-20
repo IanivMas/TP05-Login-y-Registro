@@ -55,6 +55,9 @@ public IActionResult InicioSesion(string usuario, string clave)
         return View();
     }
     HttpContext.Session.SetString("usuario", usuarioEncontrado.usuario);
+    HttpContext.Session.SetString("nombre", usuarioEncontrado.nombre);
+    HttpContext.Session.SetString("apellido", usuarioEncontrado.apellido);
+    HttpContext.Session.SetString("tipo", usuarioEncontrado.tipo);
    
     return RedirectToAction("PaginaPrincipal", "Home");
 }
@@ -68,14 +71,19 @@ public IActionResult InicioSesion(string usuario, string clave)
             
             return RedirectToAction("InicioSesion", "Home");
         }
+        ViewBag.Usuario = HttpContext.Session.GetString("usuario");
+        ViewBag.Nombre = HttpContext.Session.GetString("nombre");
+        ViewBag.Apellido = HttpContext.Session.GetString("apellido");
+        ViewBag.Tipo = HttpContext.Session.GetString("tipo");
         return View();
-
+        
         
     }
+    [HttpPost]
     public IActionResult CerrarSesion()
     {
         HttpContext.Session.Clear();
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("InicioSesion", "Home");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

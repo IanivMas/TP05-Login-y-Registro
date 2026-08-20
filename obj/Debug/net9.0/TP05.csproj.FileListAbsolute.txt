@@ -127,7 +127,6 @@ C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\compressed\y4vo3d433l-c
 C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\compressed\50lv836189-t1cqhe9u97.gz
 C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\compressed\7u6m2zhn9g-xtxxf3hu2r.gz
 C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\compressed\e66xxiqnkd-61n19gt1b8.gz
-C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\compressed\jq18c117a3-b9sayid5wm.gz
 C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\compressed\re9n4mucmg-8918uxab0p.gz
 C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\compressed\3xlmahuz09-8918uxab0p.gz
 C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\staticwebassets.build.json
@@ -140,3 +139,4 @@ C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\refint\TP05.dll
 C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.pdb
 C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\TP05.genruntimeconfig.cache
 C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\ref\TP05.dll
+C:\Users\49836040\TP05-Login-y-Registro\obj\Debug\net9.0\compressed\jq18c117a3-v4zk6jdb5a.gz

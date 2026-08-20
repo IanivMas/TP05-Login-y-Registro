@@ -3,3 +3,16 @@
 }
 <h1>@ViewData["Title"]</h1>
 
+<p>Bienvenido, @ViewBag.Usuario!</p>
+
+<p>Nombre: @ViewBag.Nombre</p>
+
+<p>Apellido: @ViewBag.Apellido</p>
+
+<p>Usuario: @ViewBag.Usuario</p>
+
+<p>Tipo: @ViewBag.Tipo</p>
+
+<form action="@Url.Action("CerrarSesion", "Home")" method="post" class="mt-4">
+    <input type="submit" class="btn btn-danger" name="cerrarSesion" value="Cerrar sesión" />
+</form>
